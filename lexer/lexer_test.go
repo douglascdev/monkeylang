@@ -7,7 +7,14 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
-	input := `=+{},;`
+	input := `let five = 5;
+	let ten = 10;
+
+	let add = fn(x, y) {
+		x + y;
+	};
+
+	let result = add(five, ten);`
 
 	tests := []struct {
 		expectedType    token.TokenType
@@ -39,7 +46,6 @@ func TestNextToken(t *testing.T) {
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.SEMICOLON, ";"},
-		{token.EOF, ""},
 		{token.LET, "let"},
 		{token.IDENT, "result"},
 		{token.ASSIGN, "="},
